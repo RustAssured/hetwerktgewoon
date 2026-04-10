@@ -191,6 +191,8 @@
     <h2>Benieuwd waar jullie tijd naartoe gaat?</h2>
     <p>We laten je zien waar de quick wins zitten — en wat het oplevert als je ze aanpakt.</p>
     <form class="contact-form" id="contactForm">
+      <input type="hidden" name="access_key" value="4cd8db83-a501-49b8-9947-e312df18b53d">
+      <input type="hidden" name="subject" value="Nieuwe intake aanvraag — Het Werkt Gewoon">
       <div class="form-row">
         <label for="name">Naam</label>
         <input type="text" id="name" name="name" placeholder="Je naam" required>
@@ -223,7 +225,7 @@
     btn.disabled = true;
     const data = new FormData(form);
     try {
-      const res = await fetch('https://formspree.io/f/xojporzg', {
+      const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         body: data,
         headers: { 'Accept': 'application/json' }
