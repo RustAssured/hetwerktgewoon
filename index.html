@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Het Werkt Gewoon — Procesoptimalisatie voor kleine teams</title>
-<meta name="description" content="Jullie systemen lopen... niet helemaal lekker. Wij kijken waar het schuurt — en dan werkt het gewoon.">
+<meta name="description" content="Jullie systemen lopen... niet helemaal lekker. Samen halen we dat eruit — en dan werkt het gewoon.">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -23,7 +23,7 @@
   .logo span { color: var(--accent); }
   .nav-cta { font-size: 13px; font-weight: 500; color: var(--accent); border: 1.5px solid var(--accent); padding: 0.4rem 1rem; border-radius: 100px; text-decoration: none; transition: background 0.15s, color 0.15s; }
   .nav-cta:hover { background: var(--accent); color: white; }
-  .hero { max-width: 760px; margin: 0 auto; padding: 5rem 2rem 4rem; text-align: center; }
+  .hero { max-width: 760px; margin: 0 auto; padding: 5rem 2rem 3rem; text-align: center; }
   .hero-eyebrow { display: inline-block; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); background: var(--accent-light); padding: 0.3rem 0.9rem; border-radius: 100px; margin-bottom: 1.75rem; }
   .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2.4rem, 5vw, 3.8rem); line-height: 1.15; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 1.5rem; }
   .hero h1 em { font-style: italic; color: var(--accent); }
@@ -31,13 +31,17 @@
   .hero-cta { display: inline-block; background: var(--accent); color: white; font-size: 15px; font-weight: 500; padding: 0.85rem 2rem; border-radius: 100px; text-decoration: none; transition: opacity 0.15s; }
   .hero-cta:hover { opacity: 0.88; }
   .hero-note { display: block; font-size: 12px; color: var(--muted); margin-top: 0.75rem; }
-  .divider { border: none; border-top: 1px solid var(--border); margin: 0 2rem; }
-  .pain { max-width: 760px; margin: 0 auto; padding: 4rem 2rem; }
-  .pain-label { font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.25rem; }
-  .pain h2 { font-family: 'DM Serif Display', serif; font-size: clamp(1.6rem, 3vw, 2.2rem); letter-spacing: -0.02em; margin-bottom: 1rem; line-height: 1.25; }
-  .pain > p { color: var(--muted); font-weight: 300; max-width: 560px; line-height: 1.75; }
-  .pain-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-top: 2.5rem; }
-  .pain-item { background: var(--white); padding: 1.5rem; }
+  .bridge { background: var(--white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .bridge-inner { max-width: 600px; margin: 0 auto; padding: 3.5rem 2rem; text-align: center; }
+  .bridge p { font-family: 'DM Serif Display', serif; font-size: clamp(1.05rem, 2.2vw, 1.3rem); color: var(--muted); line-height: 1.8; font-style: italic; letter-spacing: -0.01em; margin-bottom: 0.75rem; }
+  .bridge p:last-child { margin-bottom: 0; }
+  .bridge .bridge-close { color: var(--ink); }
+  .pain { max-width: 760px; margin: 0 auto; padding: 4.5rem 2rem; }
+  .section-label { font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.25rem; }
+  .section-title { font-family: 'DM Serif Display', serif; font-size: clamp(1.6rem, 3vw, 2.2rem); letter-spacing: -0.02em; margin-bottom: 1rem; line-height: 1.25; }
+  .section-intro { color: var(--muted); font-weight: 300; max-width: 560px; line-height: 1.75; }
+  .pain-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-top: 2.5rem; }
+  .pain-item { background: var(--white); padding: 1.75rem; }
   .pain-item .icon { font-size: 1.2rem; margin-bottom: 0.75rem; display: block; }
   .pain-item strong { display: block; font-size: 14px; font-weight: 500; margin-bottom: 0.35rem; }
   .pain-item span { font-size: 13px; color: var(--muted); line-height: 1.6; }
@@ -45,15 +49,12 @@
   .how-inner { max-width: 760px; margin: 0 auto; }
   .how-label { font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 1.25rem; }
   .how h2 { font-family: 'DM Serif Display', serif; font-size: clamp(1.6rem, 3vw, 2.2rem); letter-spacing: -0.02em; margin-bottom: 3rem; line-height: 1.25; }
-  .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 2rem; }
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; }
   .step-num { font-family: 'DM Serif Display', serif; font-size: 2rem; color: var(--accent); display: block; margin-bottom: 0.5rem; opacity: 0.8; }
   .step strong { display: block; font-size: 14px; font-weight: 500; margin-bottom: 0.4rem; color: white; }
   .step span { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.65; }
-  .what { max-width: 760px; margin: 0 auto; padding: 5rem 2rem; }
-  .what-label { font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.25rem; }
-  .what h2 { font-family: 'DM Serif Display', serif; font-size: clamp(1.6rem, 3vw, 2.2rem); letter-spacing: -0.02em; margin-bottom: 0.75rem; line-height: 1.25; }
-  .what-intro { color: var(--muted); font-weight: 300; max-width: 520px; line-height: 1.75; margin-bottom: 2.5rem; }
-  .solutions { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+  .what { max-width: 760px; margin: 0 auto; padding: 4.5rem 2rem; }
+  .solutions { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 2.5rem; }
   .solution { border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; background: var(--white); }
   .solution-tag { font-size: 11px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); background: var(--accent-light); padding: 0.25rem 0.7rem; border-radius: 100px; display: inline-block; margin-bottom: 1rem; }
   .solution h3 { font-size: 14px; font-weight: 500; margin-bottom: 0.4rem; line-height: 1.4; }
@@ -63,29 +64,40 @@
   .cta-bottom h2 { font-family: 'DM Serif Display', serif; font-size: clamp(1.8rem, 3.5vw, 2.6rem); letter-spacing: -0.02em; margin-bottom: 1rem; line-height: 1.2; color: var(--ink); }
   .cta-bottom p { font-size: 15px; color: var(--muted); margin-bottom: 2rem; font-weight: 300; line-height: 1.7; }
   footer { padding: 1.5rem 2rem; border-top: 1px solid var(--border); text-align: center; font-size: 12px; color: var(--muted); }
+  @media (max-width: 600px) {
+    .pain-grid { grid-template-columns: 1fr; }
+    .steps { grid-template-columns: 1fr; gap: 2rem; }
+    .solutions { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
 
 <nav>
   <a class="logo" href="/">het werkt <span>gewoon</span></a>
-  <a class="nav-cta" href="#contact">Gratis intake →</a>
+  <a class="nav-cta" href="#contact">Laat ons meekijken →</a>
 </nav>
 
 <section class="hero">
   <span class="hero-eyebrow">Procesoptimalisatie voor kleine teams</span>
   <h1>Jullie systemen lopen...<br><em>niet helemaal lekker.</em></h1>
-  <p class="hero-sub">Veel kleine teams besteden uren per week aan handelingen die een systeem al lang voor ze had kunnen doen. Wij kijken waar het schuurt — en dan werkt het gewoon.</p>
-  <a class="hero-cta" href="#contact">Plan een gratis intake</a>
+  <p class="hero-sub">Kleine teams verliezen elke week uren aan handmatig werk dat hun systemen allang hadden kunnen doen. Samen halen we dat eruit — en dan werkt het gewoon.</p>
+  <a class="hero-cta" href="#contact">Laat ons een uur meekijken</a>
   <span class="hero-note">Geen verplichtingen. Geen rapport van 40 pagina's.</span>
 </section>
 
-<hr class="divider">
+<section class="bridge">
+  <div class="bridge-inner">
+    <p>Je weet dat het slimmer kan. Maar ondertussen kopieert iemand nog steeds gegevens van A naar B. Elke dag weer.</p>
+    <p>Aan het einde van de dag is de energie op. En morgen gebeurt precies hetzelfde.</p>
+    <p class="bridge-close">Dat kennen we. Het moet gewoon werken.</p>
+  </div>
+</section>
 
 <section class="pain">
-  <p class="pain-label">Herkenbaar?</p>
-  <h2>Druk zijn en<br>stilstaan zijn niet hetzelfde.</h2>
-  <p>Als je team de helft van de dag bezig is met kopiëren, checken en handmatig bijwerken — dan is dat geen drukte. Dan is dat waste.</p>
+  <p class="section-label">Herkenbaar?</p>
+  <h2 class="section-title">Druk zijn en<br>stilstaan zijn niet hetzelfde.</h2>
+  <p class="section-intro">Als je team de helft van de dag bezig is met kopiëren, checken en handmatig bijwerken — dan is dat geen drukte. Dan lekt er tijd weg. Elke dag.</p>
   <div class="pain-grid">
     <div class="pain-item">
       <span class="icon">↻</span>
@@ -123,7 +135,7 @@
       <div class="step">
         <span class="step-num">02</span>
         <strong>Top 3 quick wins</strong>
-        <span>We komen terug met drie concrete verbeteringen — met tijdsbesparing en kosten erbij. Jullie kiezen wat.</span>
+        <span>We komen terug met drie concrete verbeteringen — inclusief wat het oplevert in tijd en geld.</span>
       </div>
       <div class="step">
         <span class="step-num">03</span>
@@ -135,9 +147,9 @@
 </section>
 
 <section class="what">
-  <p class="what-label">Wat we aanpakken</p>
-  <h2>Voorbeelden van wat<br>er typisch schuurt.</h2>
-  <p class="what-intro">Elk bedrijf is anders, maar de patronen zijn verrassend herkenbaar. Dit zijn veelvoorkomende quick wins die we tegenkomen.</p>
+  <p class="section-label">Wat we aanpakken</p>
+  <h2 class="section-title">Voorbeelden van wat<br>er typisch schuurt.</h2>
+  <p class="section-intro">Elk bedrijf is anders, maar de patronen zijn verrassend herkenbaar. Bij teams van 3-10 mensen zien we dit bijna altijd terug.</p>
   <div class="solutions">
     <div class="solution">
       <span class="solution-tag">Betalingen</span>
@@ -165,8 +177,8 @@
 <section class="cta-bottom" id="contact">
   <div class="cta-bottom-inner">
     <h2>Benieuwd waar jullie tijd naartoe gaat?</h2>
-    <p>Een uur intake. Geen verplichtingen. We laten je zien waar de quick wins zitten — en wat het oplevert als we die aanpakken.</p>
-    <a class="hero-cta" href="mailto:hoi@hetwerktgewoon.nl">Plan een gratis intake</a>
+    <p>We laten je zien waar de quick wins zitten — en wat het oplevert als je ze aanpakt.</p>
+    <a class="hero-cta" href="mailto:hoi@hetwerktgewoon.nl">Laat ons een uur meekijken</a>
   </div>
 </section>
 
