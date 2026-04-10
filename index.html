@@ -190,7 +190,7 @@
   <div class="cta-bottom-inner">
     <h2>Benieuwd waar jullie tijd naartoe gaat?</h2>
     <p>We laten je zien waar de quick wins zitten — en wat het oplevert als je ze aanpakt.</p>
-    <form class="contact-form" action="https://formspree.io/f/xojporzg" method="POST">
+    <form class="contact-form" id="contactForm">
       <div class="form-row">
         <label for="name">Naam</label>
         <input type="text" id="name" name="name" placeholder="Je naam" required>
@@ -203,11 +203,44 @@
         <label for="message">Bericht</label>
         <textarea id="message" name="message" placeholder="Vertel kort wat er schuurt, of stel gewoon een vraag."></textarea>
       </div>
-      <button type="submit" class="form-submit">Laat ons een uur meekijken</button>
+      <button type="submit" class="form-submit" id="submitBtn">Laat ons een uur meekijken</button>
       <span class="form-note">Geen verplichtingen. Geen rapport van 40 pagina's.</span>
     </form>
+    <div id="formSuccess" style="display:none; margin-top: 2rem; padding: 1.5rem; background: var(--white); border-radius: 12px; border: 1px solid rgba(45,106,79,0.2);">
+      <p style="font-family: 'DM Serif Display', serif; font-size: 1.2rem; color: var(--ink); margin-bottom: 0.5rem;">Goed, we kijken mee.</p>
+      <p style="font-size: 14px; color: var(--muted);">We nemen zo snel mogelijk contact op — meestal binnen een werkdag.</p>
+    </div>
   </div>
 </section>
+
+<script>
+  const form = document.getElementById('contactForm');
+  const success = document.getElementById('formSuccess');
+  const btn = document.getElementById('submitBtn');
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    btn.textContent = 'Even geduld...';
+    btn.disabled = true;
+    const data = new FormData(form);
+    try {
+      const res = await fetch('https://formspree.io/f/xojporzg', {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        form.style.display = 'none';
+        success.style.display = 'block';
+      } else {
+        btn.textContent = 'Er ging iets mis — probeer opnieuw';
+        btn.disabled = false;
+      }
+    } catch(err) {
+      btn.textContent = 'Er ging iets mis — probeer opnieuw';
+      btn.disabled = false;
+    }
+  });
+</script>
 
 <footer>
   © 2026 Het Werkt Gewoon · onderdeel van <a href="https://woojung.nl" style="color: var(--muted);">woojung.nl</a>
