@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Het Werkt Gewoon — Procesoptimalisatie voor kleine teams</title>
-<meta name="description" content="Jullie systemen lopen... niet helemaal lekker. Samen halen we dat eruit — en dan werkt het gewoon.">
+<title>Het Werkt Gewoon - Procesoptimalisatie voor kleine teams</title>
+<meta name="description" content="Jullie systemen lopen... niet helemaal lekker. Samen halen we dat eruit, en dan werkt het gewoon.">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -28,7 +28,7 @@
   .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2.4rem, 5vw, 3.8rem); line-height: 1.15; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 1.5rem; }
   .hero h1 em { font-style: italic; color: var(--accent); }
   .hero-sub { font-size: 1.05rem; color: var(--muted); max-width: 520px; margin: 0 auto 2.5rem; line-height: 1.75; font-weight: 300; }
-  .hero-cta { display: inline-block; background: var(--accent); color: white; font-size: 15px; font-weight: 500; padding: 0.85rem 2rem; border-radius: 100px; text-decoration: none; transition: opacity 0.15s; }
+  .hero-cta { display: inline-block; background: var(--accent); color: white; font-size: 15px; font-weight: 500; padding: 1rem 2.5rem; border-radius: 100px; text-decoration: none; transition: opacity 0.15s; }
   .hero-cta:hover { opacity: 0.88; }
   .hero-note { display: block; font-size: 12px; color: var(--muted); margin-top: 0.75rem; }
   .bridge { background: var(--white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
@@ -42,10 +42,11 @@
   .section-intro { color: var(--muted); font-weight: 300; max-width: 560px; line-height: 1.75; }
   .pain-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-top: 2.5rem; }
   .pain-item { background: var(--white); padding: 1.75rem; }
-  .pain-item .icon { display: block; margin-bottom: 1rem; width: 40px; height: 40px; }
+  .pain-item .icon { display: block; margin-bottom: 1.25rem; width: 48px; height: 48px; }
   .pain-item strong { display: block; font-size: 14px; font-weight: 500; margin-bottom: 0.35rem; }
   .pain-item span { font-size: 13px; color: var(--muted); line-height: 1.6; }
-  .step-icon { display: block; margin-bottom: 1rem; width: 36px; height: 36px; opacity: 0.85; }
+  .step-icon { display: block; margin-bottom: 1.25rem; width: 40px; height: 40px; }
+  .step-icon svg { width: 40px; height: 40px; filter: brightness(1.4); }
   .how { background: var(--ink); color: white; padding: 5rem 2rem; }
   .how-inner { max-width: 760px; margin: 0 auto; }
   .how-label { font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 1.25rem; }
@@ -69,11 +70,13 @@
   .contact-form { margin-top: 2rem; text-align: left; }
   .form-row { margin-bottom: 1rem; }
   .form-row label { display: block; font-size: 12px; font-weight: 500; color: var(--muted); margin-bottom: 0.4rem; letter-spacing: 0.04em; text-transform: uppercase; }
-  .form-row input, .form-row textarea { width: 100%; padding: 0.75rem 1rem; border: 1px solid var(--border); border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--ink); background: var(--white); outline: none; transition: border 0.15s; }
-  .form-row input:focus, .form-row textarea:focus { border-color: var(--accent); }
+  .form-row input, .form-row textarea { width: 100%; padding: 0.75rem 1rem; border: 1px solid rgba(26,26,24,0.15); border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--ink); background: var(--white); outline: none; transition: border 0.2s, box-shadow 0.2s; }
+  .form-row input:focus, .form-row textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(45,106,79,0.1); }
   .form-row textarea { resize: vertical; min-height: 100px; line-height: 1.6; }
-  .form-submit { display: inline-block; background: var(--accent); color: white; font-size: 15px; font-weight: 500; padding: 0.85rem 2rem; border-radius: 100px; border: none; cursor: pointer; transition: opacity 0.15s; font-family: 'DM Sans', sans-serif; }
+  .form-submit { display: inline-block; background: var(--accent); color: white; font-size: 15px; font-weight: 500; padding: 1rem 2.5rem; border-radius: 100px; border: none; cursor: pointer; transition: opacity 0.15s; font-family: 'DM Sans', sans-serif; }
   .form-submit:hover { opacity: 0.88; }
+  .hero-cta { display: inline-block; background: var(--accent); color: white; font-size: 15px; font-weight: 500; padding: 1rem 2.5rem; border-radius: 100px; text-decoration: none; transition: opacity 0.15s; }
+  .hero-cta:hover { opacity: 0.88; }
   .form-note { display: block; font-size: 12px; color: var(--muted); margin-top: 0.75rem; }
   @media (max-width: 600px) {
     .pain-grid { grid-template-columns: 1fr; }
@@ -92,7 +95,7 @@
 <section class="hero">
   <span class="hero-eyebrow">Procesoptimalisatie voor kleine teams</span>
   <h1>Jullie systemen lopen...<br><em>niet helemaal lekker.</em></h1>
-  <p class="hero-sub">Kleine teams verliezen elke week uren aan handmatig werk dat hun systemen allang hadden kunnen doen. Samen halen we dat eruit — en dan werkt het <span class="accent">gewoon</span>.</p>
+  <p class="hero-sub">Kleine teams verliezen elke week uren aan handmatig werk dat hun systemen allang hadden kunnen doen. Samen halen we dat eruit, en dan werkt het <span class="accent">gewoon</span>.</p>
   <a class="hero-cta" href="#contact">Laat ons een uur meekijken</a>
   <span class="hero-note">Geen verplichtingen. Geen rapport van 40 pagina's.</span>
 </section>
@@ -108,7 +111,7 @@
 <section class="pain">
   <p class="section-label">Herkenbaar?</p>
   <h2 class="section-title">Druk zijn en<br>stilstaan zijn niet hetzelfde.</h2>
-  <p class="section-intro">Als je team de helft van de dag bezig is met kopiëren, checken en handmatig bijwerken — dan is dat geen drukte. Dan lekt er tijd weg. Elke dag.</p>
+  <p class="section-intro">Als je team de helft van de dag bezig is met kopiëren, checken en handmatig bijwerken: dan is dat geen drukte. Dan lekt er tijd weg. Elke dag.</p>
   <div class="pain-grid">
     <div class="pain-item">
       <span class="icon"><svg width="40" height="40" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><style>.s{stroke:#1a1a18;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}</style><rect x="8" y="24" width="22" height="18" rx="3" class="s"/><rect x="37" y="16" width="20" height="17" rx="3" class="s"/><rect x="52" y="36" width="20" height="20" rx="3" class="s"/><line x1="30" y1="32" x2="35" y2="30" class="s" stroke-dasharray="2,3"/><line x1="55" y1="35" x2="53" y2="38" class="s" stroke-dasharray="2,3"/></svg></span>
@@ -118,7 +121,7 @@
     <div class="pain-item">
       <span class="icon"><svg width="40" height="40" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><style>.s2{stroke:#1a1a18;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}.a2{stroke:#2d6a4f;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}</style><circle cx="40" cy="36" r="20" class="s2"/><line x1="37" y1="12" x2="43" y2="12" class="s2"/><line x1="40" y1="36" x2="40" y2="22" class="s2" stroke-width="2.5"/><line x1="40" y1="36" x2="52" y2="42" class="s2" stroke-width="2.5"/><circle cx="40" cy="36" r="2" style="fill:#1a1a18;stroke:none"/><path d="M38,56 C37,61 39,66 40,68 C41,66 43,61 42,56" class="a2" opacity="0.7"/></svg></span>
       <strong>Periodiek handmatig checken</strong>
-      <span>Betalingen nazien, mails uitzoeken, lijstjes bijhouden — elke dag opnieuw.</span>
+      <span>Betalingen nazien, mails uitzoeken, lijstjes bijhouden. Elke dag opnieuw.</span>
     </div>
     <div class="pain-item">
       <span class="icon"><svg width="40" height="40" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><style>.s3{stroke:#1a1a18;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}.a3{stroke:#2d6a4f;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}</style><rect x="8" y="30" width="20" height="18" rx="3" class="s3"/><rect x="52" y="30" width="20" height="18" rx="3" class="s3"/><line x1="28" y1="39" x2="33" y2="39" class="s3"/><line x1="47" y1="39" x2="52" y2="39" class="s3"/><rect x="33" y="32" width="14" height="14" rx="2" class="a3"/><line x1="37" y1="32" x2="37" y2="27" class="a3"/><line x1="43" y1="32" x2="43" y2="27" class="a3"/></svg></span>
@@ -128,7 +131,7 @@
     <div class="pain-item">
       <span class="icon"><svg width="40" height="40" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><style>.s4{stroke:#1a1a18;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}.a4{stroke:#2d6a4f;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}.af4{fill:#2d6a4f;stroke:none}</style><path d="M40,10 C30,10 24,18 24,28 L24,48 L18,54 L62,54 L56,48 L56,28 C56,18 50,10 40,10 Z" class="s4"/><path d="M34,54 C34,59 46,59 46,54" class="s4"/><line x1="58" y1="18" x2="64" y2="12" class="a4"/><line x1="62" y1="28" x2="69" y2="28" class="a4"/><line x1="58" y1="38" x2="64" y2="44" class="a4"/><circle cx="40" cy="32" r="4" class="af4"/></svg></span>
       <strong>Kansen die je mist</strong>
-      <span>Reorders, follow-ups, signalen — die zitten in iemands hoofd in plaats van in een systeem.</span>
+      <span>Reorders, follow-ups, signalen. Die zitten in iemands hoofd in plaats van in een systeem.</span>
     </div>
   </div>
 </section>
@@ -140,13 +143,13 @@
     <div class="steps">
       <div class="step">
         <span class="step-icon"><svg width="36" height="36" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><style>.si{stroke:#2d6a4f;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}.sib{fill:#2d6a4f;stroke:none}</style><rect x="30" y="10" width="22" height="16" rx="2" style="stroke:#ffffff;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round"/><path d="M10,46 C22,28 58,28 70,46 C58,64 22,64 10,46 Z" style="stroke:#ffffff;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round"/><circle cx="40" cy="46" r="9" style="stroke:#ffffff;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round"/><circle cx="40" cy="46" r="4" style="fill:#2d6a4f;stroke:none"/><line x1="40" y1="26" x2="40" y2="37" class="si" opacity="0.6"/></svg></span>
-        <strong>Intake — gratis</strong>
+        <strong>Intake, gratis</strong>
         <span>We kijken een uur mee naar hoe jullie werken. Geen vragenlijst, gewoon kijken en luisteren.</span>
       </div>
       <div class="step">
         <span class="step-icon"><svg width="36" height="36" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><path d="M46,8 L28,42 L40,42 L34,72 L56,36 L44,36 Z" style="stroke:#2d6a4f;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round"/></svg></span>
         <strong>Top 3 quick wins</strong>
-        <span>We komen terug met drie concrete verbeteringen — inclusief wat het oplevert in tijd en geld.</span>
+        <span>We komen terug met drie concrete verbeteringen, inclusief wat het oplevert in tijd en geld.</span>
       </div>
       <div class="step">
         <span class="step-icon"><svg width="36" height="36" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><style>.sg{stroke:#ffffff;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}</style><circle cx="40" cy="40" r="11" class="sg"/><circle cx="40" cy="40" r="4.5" style="stroke:#2d6a4f;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round"/><rect x="37" y="7" width="6" height="9" rx="1.5" class="sg"/><rect x="37" y="64" width="6" height="9" rx="1.5" class="sg"/><rect x="64" y="37" width="9" height="6" rx="1.5" class="sg"/><rect x="7" y="37" width="9" height="6" rx="1.5" class="sg"/><rect x="57" y="13" width="6" height="9" rx="1.5" class="sg" transform="rotate(45,60,17.5)"/><rect x="17" y="58" width="6" height="9" rx="1.5" class="sg" transform="rotate(45,20,62.5)"/><rect x="57" y="58" width="6" height="9" rx="1.5" class="sg" transform="rotate(-45,60,62.5)"/><rect x="17" y="13" width="6" height="9" rx="1.5" class="sg" transform="rotate(-45,20,17.5)"/></svg></span>
@@ -154,7 +157,7 @@
         <span>We bouwen het. Geen eindeloze trajecten. Vaste prijs, afgebakend, en dan werkt het gewoon.</span>
       </div>
     </div>
-    <p style="margin-top: 2.5rem; font-size: 13px; color: rgba(255,255,255,0.35); font-style: italic; max-width: 480px;">Soms is de eerlijkste uitkomst dat er op dit moment weinig laaghangend fruit is. Ook dat is een antwoord — en beter dan iets bouwen om het bouwen.</p>
+    <p style="margin-top: 2.5rem; font-size: 13px; color: rgba(255,255,255,0.35); font-style: italic; max-width: 480px;">Soms is de eerlijkste uitkomst dat er op dit moment weinig laaghangend fruit is. Ook dat is een antwoord, en beter dan iets bouwen om het bouwen.</p>
   </div>
 </section>
 
@@ -166,7 +169,7 @@
     <div class="solution">
       <span class="solution-tag">Betalingen</span>
       <h3>Automatisch betaalstatus bijwerken</h3>
-      <p>Geen handmatig controleren meer of een betaling binnen is — je CRM weet het zodra je boekhoudsysteem het weet.</p>
+      <p>Geen handmatig controleren meer of een betaling binnen is. Je CRM weet het zodra je boekhoudsysteem het weet.</p>
     </div>
     <div class="solution">
       <span class="solution-tag">Orders</span>
@@ -176,23 +179,24 @@
     <div class="solution">
       <span class="solution-tag">Klantbeheer</span>
       <h3>Reorder signalering</h3>
-      <p>Automatisch een signaal als een klant aan een herbestelling toe is — op basis van hun eigen bestelpatroon.</p>
+      <p>Automatisch een signaal als een klant aan een herbestelling toe is, op basis van hun eigen bestelpatroon.</p>
     </div>
     <div class="solution">
       <span class="solution-tag">Communicatie</span>
       <h3>Statusupdates zonder handwerk</h3>
-      <p>Klanten automatisch informeren over hun order of betaling — zonder dat iemand daar elke keer aan moet denken.</p>
+      <p>Klanten automatisch informeren over hun order of betaling, zonder dat iemand daar elke keer aan moet denken.</p>
     </div>
   </div>
 </section>
 
 <section class="cta-bottom" id="contact">
   <div class="cta-bottom-inner">
+    <p style="font-size: 13px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.25rem;">Wat het oplevert</p>
     <h2>Benieuwd waar jullie tijd naartoe gaat?</h2>
-    <p>We laten je zien waar de quick wins zitten — en wat het oplevert als je ze aanpakt.</p>
+    <p>Dit soort automatiseringen besparen teams zoals die van jullie vaak 5 tot 10 uur per week. We laten je zien waar de quick wins zitten, en wat het oplevert als je ze aanpakt.</p>
     <form class="contact-form" id="contactForm">
       <input type="hidden" name="access_key" value="4cd8db83-a501-49b8-9947-e312df18b53d">
-      <input type="hidden" name="subject" value="Nieuwe intake aanvraag — Het Werkt Gewoon">
+      <input type="hidden" name="subject" value="Nieuwe intake aanvraag - Het Werkt Gewoon">
       <div class="form-row">
         <label for="name">Naam</label>
         <input type="text" id="name" name="name" placeholder="Je naam" required>
@@ -234,11 +238,11 @@
         form.style.display = 'none';
         success.style.display = 'block';
       } else {
-        btn.textContent = 'Er ging iets mis — probeer opnieuw';
+        btn.textContent = 'Er ging iets mis, probeer opnieuw';
         btn.disabled = false;
       }
     } catch(err) {
-      btn.textContent = 'Er ging iets mis — probeer opnieuw';
+      btn.textContent = 'Er ging iets mis, probeer opnieuw';
       btn.disabled = false;
     }
   });
