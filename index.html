@@ -65,6 +65,16 @@
   .cta-bottom h2 { font-family: 'DM Serif Display', serif; font-size: clamp(1.8rem, 3.5vw, 2.6rem); letter-spacing: -0.02em; margin-bottom: 1rem; line-height: 1.2; color: var(--ink); }
   .cta-bottom p { font-size: 15px; color: var(--muted); margin-bottom: 2rem; font-weight: 300; line-height: 1.7; }
   footer { padding: 1.5rem 2rem; border-top: 1px solid var(--border); text-align: center; font-size: 12px; color: var(--muted); }
+  .accent { color: var(--accent); font-style: italic; }
+  .contact-form { margin-top: 2rem; text-align: left; }
+  .form-row { margin-bottom: 1rem; }
+  .form-row label { display: block; font-size: 12px; font-weight: 500; color: var(--muted); margin-bottom: 0.4rem; letter-spacing: 0.04em; text-transform: uppercase; }
+  .form-row input, .form-row textarea { width: 100%; padding: 0.75rem 1rem; border: 1px solid var(--border); border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--ink); background: var(--white); outline: none; transition: border 0.15s; }
+  .form-row input:focus, .form-row textarea:focus { border-color: var(--accent); }
+  .form-row textarea { resize: vertical; min-height: 100px; line-height: 1.6; }
+  .form-submit { display: inline-block; background: var(--accent); color: white; font-size: 15px; font-weight: 500; padding: 0.85rem 2rem; border-radius: 100px; border: none; cursor: pointer; transition: opacity 0.15s; font-family: 'DM Sans', sans-serif; }
+  .form-submit:hover { opacity: 0.88; }
+  .form-note { display: block; font-size: 12px; color: var(--muted); margin-top: 0.75rem; }
   @media (max-width: 600px) {
     .pain-grid { grid-template-columns: 1fr; }
     .steps { grid-template-columns: 1fr; gap: 2rem; }
@@ -82,7 +92,7 @@
 <section class="hero">
   <span class="hero-eyebrow">Procesoptimalisatie voor kleine teams</span>
   <h1>Jullie systemen lopen...<br><em>niet helemaal lekker.</em></h1>
-  <p class="hero-sub">Kleine teams verliezen elke week uren aan handmatig werk dat hun systemen allang hadden kunnen doen. Samen halen we dat eruit — en dan werkt het gewoon.</p>
+  <p class="hero-sub">Kleine teams verliezen elke week uren aan handmatig werk dat hun systemen allang hadden kunnen doen. Samen halen we dat eruit — en dan werkt het <span class="accent">gewoon</span>.</p>
   <a class="hero-cta" href="#contact">Laat ons een uur meekijken</a>
   <span class="hero-note">Geen verplichtingen. Geen rapport van 40 pagina's.</span>
 </section>
@@ -91,7 +101,7 @@
   <div class="bridge-inner">
     <p>Je weet dat het slimmer kan. Maar ondertussen kopieert iemand nog steeds gegevens van A naar B. Elke dag weer.</p>
     <p>Aan het einde van de dag is de energie op. En morgen gebeurt precies hetzelfde.</p>
-    <p class="bridge-close">Dat kennen we. Het moet gewoon werken.</p>
+    <p class="bridge-close">Dat kennen we. Het moet gewoon <span class="accent">werken</span>.</p>
   </div>
 </section>
 
@@ -180,7 +190,22 @@
   <div class="cta-bottom-inner">
     <h2>Benieuwd waar jullie tijd naartoe gaat?</h2>
     <p>We laten je zien waar de quick wins zitten — en wat het oplevert als je ze aanpakt.</p>
-    <a class="hero-cta" href="mailto:hoi@hetwerktgewoon.nl">Laat ons een uur meekijken</a>
+    <form class="contact-form" action="https://formspree.io/f/JOUW_FORMSPREE_ID" method="POST">
+      <div class="form-row">
+        <label for="name">Naam</label>
+        <input type="text" id="name" name="name" placeholder="Je naam" required>
+      </div>
+      <div class="form-row">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="je@bedrijf.nl" required>
+      </div>
+      <div class="form-row">
+        <label for="message">Bericht</label>
+        <textarea id="message" name="message" placeholder="Vertel kort wat er schuurt, of stel gewoon een vraag."></textarea>
+      </div>
+      <button type="submit" class="form-submit">Laat ons een uur meekijken</button>
+      <span class="form-note">Geen verplichtingen. Geen rapport van 40 pagina's.</span>
+    </form>
   </div>
 </section>
 
