@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Het Werkt Gewoon — Bridea Medical</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #1a1a18;
+    --muted: #6b6b66;
+    --accent: #2d6a4f;
+    --accent-light: #e8f4ee;
+    --border: rgba(26,26,24,0.12);
+    --bg: #faf9f6;
+    --white: #ffffff;
+  }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+  .card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 3rem;
+    max-width: 420px;
+    width: 100%;
+    text-align: center;
+  }
+  .logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    color: var(--ink);
+    margin-bottom: 0.4rem;
+  }
+  .logo span { color: var(--accent); }
+  .tagline {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 2rem;
+    font-weight: 300;
+  }
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 0 0 2rem;
+  }
+  .for-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 0.25rem 0.8rem;
+    border-radius: 100px;
+    display: inline-block;
+    margin-bottom: 1.25rem;
+  }
+  .client-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.6rem;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.4rem;
+    line-height: 1.2;
+  }
+  .proposal-title {
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 300;
+    margin-bottom: 2rem;
+  }
+  .qr-wrapper {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem;
+    display: inline-block;
+    margin-bottom: 1.5rem;
+  }
+  .qr-wrapper img {
+    width: 180px;
+    height: 180px;
+    display: block;
+  }
+  .scan-label {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+    font-style: italic;
+  }
+  .url {
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 500;
+    background: var(--accent-light);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    display: inline-block;
+    margin-bottom: 2rem;
+    text-decoration: none;
+    letter-spacing: 0.01em;
+  }
+  .divider2 {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 0 0 1.5rem;
+  }
+  .footer-text {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+  .footer-text strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  @media print {
+    body { background: white; }
+    .card {
+      border: 1px solid #ddd;
+      box-shadow: none;
+      max-width: 100%;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="logo">het werkt <span>gewoon</span></div>
+  <p class="tagline">Procesoptimalisatie voor kleine teams</p>
+  <hr class="divider">
+  <span class="for-label">Voorstel voor</span>
+  <h1 class="client-name">Bridea Medical</h1>
+  <p class="proposal-title">Quick Win #1 — Betaalstatus automatisering<br>April 2026 · Vertrouwelijk</p>
+  <div class="qr-wrapper">
+    <img src="data:image/png;base64,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" alt="QR code naar voorstel">
+  </div>
+  <p class="scan-label">Scan voor het volledige voorstel</p>
+  <a class="url" href="https://hetwerktgewoon.nl/proposal/bridea">hetwerktgewoon.nl/proposal/bridea</a>
+  <hr class="divider2">
+  <p class="footer-text">
+    <strong>Woo Jung</strong><br>
+    hetwerktgewoon.nl · woojung.nl<br>
+    hoi@hetwerktgewoon.nl
+  </p>
+</div>
+</body>
+</html>

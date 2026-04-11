@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Voorstel — Automatische betaalstatus flow</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #1a1a18;
+    --muted: #6b6b66;
+    --accent: #2d6a4f;
+    --accent-light: #e8f4ee;
+    --border: rgba(26,26,24,0.12);
+    --bg: #faf9f6;
+    --white: #ffffff;
+  }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--ink); font-size: 15px; line-height: 1.6; -webkit-font-smoothing: antialiased; max-width: 860px; margin: 0 auto; padding: 3rem 2rem 5rem; }
+
+  .header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+  .logo { font-family: 'DM Serif Display', serif; font-size: 1rem; color: var(--ink); }
+  .logo span { color: var(--accent); }
+  .meta { text-align: right; font-size: 12px; color: var(--muted); line-height: 1.8; }
+
+  .hero-block { margin-bottom: 3rem; }
+  .tag { display: inline-block; font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); background: var(--accent-light); padding: 0.25rem 0.8rem; border-radius: 100px; margin-bottom: 1rem; }
+  h1 { font-family: 'DM Serif Display', serif; font-size: clamp(1.8rem, 4vw, 2.8rem); line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 1rem; }
+  h1 em { font-style: italic; color: var(--accent); }
+  .hero-sub { font-size: 1rem; color: var(--muted); max-width: 560px; line-height: 1.75; font-weight: 300; }
+
+  .section { margin-bottom: 2.5rem; }
+  .section-label { font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; }
+  h2 { font-family: 'DM Serif Display', serif; font-size: 1.4rem; letter-spacing: -0.01em; margin-bottom: 1rem; line-height: 1.3; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 2.5rem; }
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin-bottom: 2.5rem; }
+
+  .card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; }
+  .card-dark { background: var(--ink); border-radius: 12px; padding: 1.5rem; color: white; }
+  .card-accent { background: var(--accent-light); border: 1px solid rgba(45,106,79,0.15); border-radius: 12px; padding: 1.5rem; }
+
+  .card .icon { width: 36px; height: 36px; margin-bottom: 1rem; display: block; }
+  .card strong { display: block; font-size: 13px; font-weight: 500; margin-bottom: 0.3rem; }
+  .card p, .card span { font-size: 12px; color: var(--muted); line-height: 1.6; }
+  .card-dark strong { color: white; }
+  .card-dark span { color: rgba(255,255,255,0.5); font-size: 12px; }
+  .card-accent strong { color: var(--accent); }
+  .card-accent p { color: var(--ink); font-size: 13px; }
+
+  .stat { text-align: center; }
+  .stat-val { font-family: 'DM Serif Display', serif; font-size: 2.2rem; color: var(--ink); display: block; line-height: 1; margin-bottom: 0.4rem; }
+  .stat-val.accent { color: var(--accent); }
+  .stat-label { font-size: 11px; color: var(--muted); line-height: 1.5; }
+
+  .flow { display: flex; align-items: center; gap: 0.75rem; margin: 1.5rem 0; flex-wrap: wrap; }
+  .flow-step { background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 0.6rem 1rem; font-size: 12px; font-weight: 500; }
+  .flow-step.after { background: var(--accent-light); border-color: rgba(45,106,79,0.2); color: var(--accent); }
+  .flow-arrow { color: var(--muted); font-size: 14px; }
+
+  .cost-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .cost-table th { text-align: left; font-size: 11px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); padding: 0 0 0.75rem; border-bottom: 1px solid var(--border); }
+  .cost-table td { padding: 0.6rem 0; border-bottom: 1px solid var(--border); color: var(--ink); vertical-align: top; }
+  .cost-table td:last-child { text-align: right; font-weight: 500; }
+  .cost-table tr.total td { font-weight: 500; color: var(--accent); border-bottom: none; padding-top: 1rem; }
+
+  .gdpr-row { display: flex; gap: 0.5rem; align-items: flex-start; margin-bottom: 0.75rem; }
+  .gdpr-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); margin-top: 0.45rem; flex-shrink: 0; }
+  .gdpr-text { font-size: 12px; color: var(--muted); line-height: 1.6; }
+  .gdpr-text strong { color: var(--ink); font-weight: 500; }
+
+  .emotional { background: var(--ink); border-radius: 12px; padding: 2rem; margin-bottom: 2.5rem; }
+  .emotional-title { font-family: 'DM Serif Display', serif; font-size: 1.3rem; color: white; margin-bottom: 0.5rem; }
+  .emotional-sub { font-size: 13px; color: rgba(255,255,255,0.45); margin-bottom: 1.5rem; font-style: italic; }
+  .emotional-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .emotional-item { }
+  .emotional-item strong { display: block; font-size: 13px; color: white; font-weight: 500; margin-bottom: 0.25rem; }
+  .emotional-item span { font-size: 12px; color: rgba(255,255,255,0.45); line-height: 1.6; }
+
+  .footer-note { border-top: 1px solid var(--border); padding-top: 1.5rem; font-size: 12px; color: var(--muted); display: flex; justify-content: space-between; align-items: center; }
+  .footer-note .logo-small { font-family: 'DM Serif Display', serif; font-size: 0.9rem; color: var(--ink); }
+  .footer-note .logo-small span { color: var(--accent); }
+
+  @media (max-width: 600px) {
+    .two-col, .three-col, .emotional-grid { grid-template-columns: 1fr; }
+    .header { flex-direction: column; gap: 1rem; }
+    .meta { text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="logo">het werkt <span>gewoon</span></div>
+  <div class="meta">
+    Voorstel voor Bridea Medical<br>
+    Quick Win #1 — Betaalstatus automatisering<br>
+    April 2026 · Vertrouwelijk
+  </div>
+</div>
+
+<div class="hero-block">
+  <span class="tag">Quick Win #1</span>
+  <h1>Minder checken.<br><em>Gewoon weten.</em></h1>
+  <p class="hero-sub">Jullie betalen elke dag voor werk dat een systeem al kan doen.</p>
+  <p class="hero-sub" style="margin-top: 0.75rem;">Bank transfer orders komen binnen, maar niemand weet wanneer de betaling er is. Tot iemand in Exact kijkt. En dan in HubSpot. Elke keer weer. Dat hoeft niet zo.</p>
+</div>
+
+<!-- FLOW -->
+<div class="section">
+  <p class="section-label">Nu (handmatig)</p>
+  <div class="flow">
+    <div class="flow-step">Order binnenkomt</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">Handmatig "waiting on payment"</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">Periodic Exact check</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">Handmatig HubSpot updaten</div>
+  </div>
+  <p class="section-label" style="margin-top: 1.5rem;">Straks (automatisch)</p>
+  <div class="flow">
+    <div class="flow-step after">Order binnenkomt</div>
+    <div class="flow-arrow" style="color: var(--accent);">→</div>
+    <div class="flow-step after">Automatisch "waiting on payment"</div>
+    <div class="flow-arrow" style="color: var(--accent);">→</div>
+    <div class="flow-step after">Betaling binnen</div>
+    <div class="flow-arrow" style="color: var(--accent);">→</div>
+    <div class="flow-step after">HubSpot updated zichzelf</div>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="three-col">
+  <div class="card stat">
+    <span class="stat-val">12+</span>
+    <span class="stat-label">minuten handmatig werk<br>per bank transfer order</span>
+  </div>
+  <div class="card stat">
+    <span class="stat-val accent">30+</span>
+    <span class="stat-label">uur bespaard per jaar<br><strong style="color: var(--accent);">op deze flow alleen</strong></span>
+  </div>
+  <div class="card stat">
+    <span class="stat-val">&lt;1jr</span>
+    <span class="stat-label">terugverdientijd<br>bij huidig ordervolume</span>
+  </div>
+</div>
+
+<!-- EMOTIONELE WINST -->
+<div class="emotional">
+  <p class="emotional-title">Wat je niet ziet in een spreadsheet.</p>
+  <p class="emotional-sub">Maar wat je team elke dag voelt.</p>
+  <div class="emotional-grid">
+    <div class="emotional-item">
+      <strong>Geen mentale last meer</strong>
+      <span>Niet meer in je achterhoofd houden welke betalingen nog openstaan. Het systeem onthoudt het.</span>
+    </div>
+    <div class="emotional-item">
+      <strong>Minder onderbrekingen</strong>
+      <span>Niet meer uit je werk worden gehaald om iets na te kijken wat een tool al weet.</span>
+    </div>
+    <div class="emotional-item">
+      <strong>Vertrouwen in je eigen data</strong>
+      <span>HubSpot klopt. Exact klopt. Niemand twijfelt meer of de status wel actueel is.</span>
+    </div>
+    <div class="emotional-item">
+      <strong>Ruimte voor echt werk</strong>
+      <span>De tijd en energie die vrijkomt gaat naar klanten, groei en de dingen die er echt toe doen.</span>
+    </div>
+  </div>
+</div>
+
+<!-- KOSTEN -->
+<div class="two-col">
+  <div class="card">
+    <p class="section-label">Investering</p>
+    <table class="cost-table">
+      <tr><th>Post</th><th>Eenmalig</th></tr>
+      <tr><td>Analyse, bouwen en testen</td><td>€800</td></tr>
+      <tr><td>DPA Make.com (inbegrepen)</td><td>€0</td></tr>
+      <tr class="total"><td>Totaal eenmalig</td><td>€800</td></tr>
+    </table>
+    <table class="cost-table" style="margin-top: 1.25rem;">
+      <tr><th>Post</th><th>Per maand</th></tr>
+      <tr><td>Make.com (gratis tier)</td><td>€0-9</td></tr>
+      <tr><td>Exact Online API</td><td>€0</td></tr>
+      <tr><td>Beheer optioneel</td><td>€75-100</td></tr>
+    </table>
+    <p style="font-size: 11px; color: var(--accent); margin-top: 1rem; font-weight: 500;">Vaste prijs. Geen verrassingen achteraf.</p>
+  </div>
+  <div class="card">
+    <p class="section-label">Als we doorgaan</p>
+    <table class="cost-table">
+      <tr><th>Fase</th><th>Investering</th></tr>
+      <tr><td>QW #1 Betaalstatus</td><td>€800</td></tr>
+      <tr><td>QW #2 NHS email parsing</td><td>€1.000-1.200</td></tr>
+      <tr><td>QW #3 Reorder signalering</td><td>€600-800</td></tr>
+      <tr class="total"><td>Totaal alle drie</td><td>€2.400-2.800</td></tr>
+    </table>
+    <p style="font-size: 11px; color: var(--muted); margin-top: 1rem; font-style: italic;">Elke fase staat op zichzelf. Geen verplichtingen.</p>
+  </div>
+</div>
+
+<!-- GDPR -->
+<div class="section">
+  <p class="section-label">GDPR / AVG / Dataveiligheid</p>
+  <h2>Laagrisico. Transparant. Geregeld.</h2>
+  <div class="two-col" style="margin-top: 1.25rem;">
+    <div class="card">
+      <strong style="margin-bottom: 0.75rem; display: block;">Tools en compliance</strong>
+      <div class="gdpr-row"><div class="gdpr-dot"></div><div class="gdpr-text"><strong>Make.com</strong> — EU-gebaseerd, GDPR-compliant. DPA wordt door ons aangevraagd en inbegrepen in de implementatie.</div></div>
+      <div class="gdpr-row"><div class="gdpr-dot"></div><div class="gdpr-text"><strong>Exact Online</strong> — Nederlands bedrijf, ISO 27001 gecertificeerd, AVG-compliant.</div></div>
+      <div class="gdpr-row"><div class="gdpr-dot"></div><div class="gdpr-text"><strong>HubSpot</strong> — EU-datacenter beschikbaar. We verifiëren of dit actief is bij Bridea.</div></div>
+    </div>
+    <div class="card">
+      <strong style="margin-bottom: 0.75rem; display: block;">Wat er door de koppeling stroomt</strong>
+      <div class="gdpr-row"><div class="gdpr-dot"></div><div class="gdpr-text">Orderstatus, factuurnummer en betaalstatus.</div></div>
+      <div class="gdpr-row"><div class="gdpr-dot"></div><div class="gdpr-text">Geen medische data. Geen patiëntinformatie. Geen bijzondere persoonsgegevens.</div></div>
+      <div class="gdpr-row"><div class="gdpr-dot"></div><div class="gdpr-text">Verbinding via OAuth2, geen wachtwoorden gedeeld.</div></div>
+      <div class="gdpr-row"><div class="gdpr-dot"></div><div class="gdpr-text">Kort intern beleid (1 A4) vastleggen welke data mag stromen. Wij stellen dit op.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- AANPAK -->
+<div class="card-accent" style="margin-bottom: 2.5rem;">
+  <p class="section-label">Aanpak</p>
+  <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;">
+    <div>
+      <strong style="font-size: 13px; color: var(--accent); display: block; margin-bottom: 0.3rem;">01 Intake</strong>
+      <p style="font-size: 12px; color: var(--muted);">Een uur meekijken. Huidig proces in kaart, API-toegang verifiëren, scope bevestigen.</p>
+    </div>
+    <div>
+      <strong style="font-size: 13px; color: var(--accent); display: block; margin-bottom: 0.3rem;">02 Bouwen</strong>
+      <p style="font-size: 12px; color: var(--muted);">Make.com scenario's bouwen en testen. DPA regelen. Doorlooptijd circa 1 week.</p>
+    </div>
+    <div>
+      <strong style="font-size: 13px; color: var(--accent); display: block; margin-bottom: 0.3rem;">03 Live</strong>
+      <p style="font-size: 12px; color: var(--muted);">Korte overdracht aan het team. Monitoring eerste twee weken inbegrepen.</p>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="card" style="margin-bottom: 2.5rem; text-align: center; padding: 2.5rem;">
+  <p style="font-family: 'DM Serif Display', serif; font-size: 1.4rem; letter-spacing: -0.01em; margin-bottom: 0.75rem;">Zullen we dit samen live zetten?</p>
+  <p style="font-size: 13px; color: var(--muted); max-width: 420px; margin: 0 auto 1.5rem; line-height: 1.7;">Plan een intake van een uur. We verifiëren de scope, regelen de toegang, en zorgen dat dit binnen een week draait.</p>
+  <a href="mailto:hoi@hetwerktgewoon.nl" style="display: inline-block; background: var(--accent); color: white; font-size: 14px; font-weight: 500; padding: 0.85rem 2rem; border-radius: 100px; text-decoration: none;">Plan de intake</a>
+  <span style="display: block; font-size: 11px; color: var(--muted); margin-top: 0.75rem;">Geen verplichtingen. Vaste prijs. Geen verrassingen.</span>
+</div>
+
+<div class="footer-note">
+  <div class="logo-small">het werkt <span>gewoon</span></div>
+  <div>woojung.nl · hetwerktgewoon.nl</div>
+</div>
+
+</body>
+</html>
